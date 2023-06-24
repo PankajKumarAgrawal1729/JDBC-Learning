@@ -1,4 +1,5 @@
-//load
+//@author Pankaj Kumar
+
 import java.sql.*;
 
 public class FetchTable {
@@ -8,19 +9,17 @@ public class FetchTable {
         String pass = "";
         String query = "Select * from record";
 
-        try(Connection con = DriverManager.getConnection(url, uname, pass)){
+        try (Connection con = DriverManager.getConnection(url, uname, pass)) {
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery(query);
 
-            while(rs.next()){
+            while (rs.next()) {
                 String userData = rs.getInt(1) + " " + rs.getString(2);
                 System.out.println(userData);
             }
             con.close();
             st.close();
-            rs.close();
-        }
-        catch(SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
